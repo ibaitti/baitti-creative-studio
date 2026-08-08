@@ -17,11 +17,11 @@ if (typeof window !== "undefined") {
 const offerItems = [
   {
     title: "Research first",
-    desc: "Product, customer language, offer, competitors, live ads.",
+    desc: "Product, customer language, offer, competitors, live ads. Missing inputs pause the clock.",
   },
   {
     title: "Four concepts",
-    desc: "Four directions. Not one idea recolored.",
+    desc: "Four directions. Not one idea recolored. Requires one consolidated approval response.",
   },
   {
     title: "Twelve ads",
@@ -37,7 +37,7 @@ const offerItems = [
   },
   {
     title: "Two batches",
-    desc: "Six, then six. One revision round each.",
+    desc: "Six, then six. One revision round each. First batch targeted within 14 business days.",
   },
 ]
 

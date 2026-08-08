@@ -189,3 +189,115 @@ export const projects: Project[] = [
     ],
   },
 ]
+
+export type MotionVideo = {
+  id: string
+  title: string
+  aspectRatio: "9:16" | "4:5"
+  videoSrc: string
+  poster: string
+  alt: string
+  tag: string
+}
+
+export const motionVideos: MotionVideo[] = [
+  {
+    id: "motion-1",
+    title: "Vertical Ad Creative 1",
+    aspectRatio: "9:16",
+    videoSrc: "/videos/ad-creative-1.mp4",
+    poster: "/images/work/motion_poster_1.jpg",
+    alt: "Vertical 9:16 ad creative frame showing skincare bottle",
+    tag: "9:16 AD FRAME",
+  },
+  {
+    id: "motion-2",
+    title: "Feed Ad Creative 2",
+    aspectRatio: "4:5",
+    videoSrc: "/videos/ad-creative-2.mp4",
+    poster: "/images/work/motion_poster_2.jpg",
+    alt: "Feed 4:5 ad creative frame showing product texture and formula",
+    tag: "4:5 AD FRAME",
+  },
+  {
+    id: "motion-3",
+    title: "Vertical Ad Creative 3",
+    aspectRatio: "9:16",
+    videoSrc: "/videos/ad-creative-3.mp4",
+    poster: "/images/work/motion_poster_3.jpg",
+    alt: "Vertical 9:16 ad creative frame showing routine breakdown",
+    tag: "9:16 AD FRAME",
+  },
+]
+
+export type RangeScene = {
+  id: string
+  title: string
+  environment: string
+  lighting: string
+  styling: string
+  image: string
+  alt: string
+}
+
+export const rangeBlockData = {
+  title: "One product. 4 scenes.",
+  description:
+    "The same bottle shown across 4 distinctly different environments, lighting setups, and styling directions.",
+  scenes: [
+    {
+      id: "scene-1",
+      title: "01 Studio Daylight",
+      environment: "High-key architectural studio",
+      lighting: "Soft directional daylight with clean shadows",
+      styling: "Monochromatic stone pedestal and crisp linework",
+      image: "/images/work/range_minimalist.jpg",
+      alt: "Minimalist skincare product on a beige stone block in soft daylight",
+    },
+    {
+      id: "scene-2",
+      title: "02 Sun-Drenched Outdoor",
+      environment: "Natural poolside terracotta patio",
+      lighting: "Direct golden hour sun with palm leaf shadows",
+      styling: "Warm earth tones, water reflections, sun flare",
+      image: "/images/work/range_outdoor.jpg",
+      alt: "Product bottle placed on warm sun-drenched surface with organic shadows",
+    },
+    {
+      id: "scene-3",
+      title: "03 Dark Moody Editorial",
+      environment: "Low-key obsidian & slate setting",
+      lighting: "Single hard spotlight with specular highlights",
+      styling: "Sleek reflective black glass and deep shadows",
+      image: "/images/work/range_moody.jpg",
+      alt: "Product bottle in dramatic low-key editorial lighting with crisp reflections",
+    },
+    {
+      id: "scene-4",
+      title: "04 Warm Interior Sanctuary",
+      environment: "Curated travertine bathroom vanity",
+      lighting: "Warm ambient glow with soft window diffusion",
+      styling: "Natural linen, brass accents, organic marble grain",
+      image: "/images/work/range_interior.jpg",
+      alt: "Product bottle styled on a luxurious marble vanity beside natural linen",
+    },
+  ] as RangeScene[],
+}
+
+export const beforeAfterData = {
+  before: {
+    label: "Before",
+    subtitle: "Plain flat product shot",
+    description: "Flat studio illumination on neutral grey background without context or narrative.",
+    image: "/images/work/before_flat.jpg",
+    alt: "Plain flat product shot on plain white background",
+  },
+  after: {
+    label: "After",
+    subtitle: "Built AI scene",
+    description: "Rich contextual environment, custom physical lighting, materials, and campaign styling.",
+    image: "/images/work/after_scene.jpg",
+    alt: "Built AI scene showing product levitating over a splash of clear water",
+  },
+}
+

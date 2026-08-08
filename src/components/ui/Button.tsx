@@ -8,7 +8,7 @@ export function Button({
   href,
   children,
   ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+}: (React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>) & {
   variant?: "primary" | "secondary" | "outline"
   href?: string
 }) {

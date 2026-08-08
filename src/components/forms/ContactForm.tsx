@@ -2,13 +2,12 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
+import { Textarea } from "@/components/ui/Textarea"
 import { Button } from "@/components/ui/Button"
-import { siteConfig } from "@/config/site"
 
-type FieldName = "name" | "brand" | "website" | "email" | "runningAds"
+type FieldName = "name" | "brand" | "website" | "email" | "runningAds" | "jammingCreative"
 
 const REQUIRED: FieldName[] = ["name", "brand", "email"]
 
@@ -19,10 +18,11 @@ export function ContactForm() {
     website: "",
     email: "",
     runningAds: "",
+    jammingCreative: "",
   })
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const validate = () => {
     const next: Partial<Record<FieldName, string>> = {}
@@ -50,16 +50,15 @@ export function ContactForm() {
 
     setIsSubmitting(true)
     
-    const url = siteConfig.links.booking
-    if (url.startsWith("/")) {
-      router.push(url)
-    } else {
-      window.location.href = url
-    }
+    // Simulate swift form submission
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }, 600)
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target
     setFormData((prev) => ({ ...prev, [id]: value }))
@@ -105,53 +104,99 @@ export function ContactForm() {
     )
   }
 
+  if (isSubmitted) {
+    return (
+      <div className="rounded-[var(--radius-media)] border border-[var(--dark-line)] bg-white/5 p-[var(--space-5)] text-left shadow-xl backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--dark-accent)]/20 text-[var(--dark-accent)]">
+            <svg className="h-5 w-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <span className="font-sans text-lg font-bold tracking-tight text-[var(--dark-ink)]">
+            Request Received
+          </span>
+        </div>
+        <p className="type-body mt-4 text-[var(--dark-ink)] font-medium leading-relaxed">
+          A reply with two time slots arrives within one business day.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <form
-      className="flex max-w-lg flex-col gap-[var(--space-3)]"
+      className="flex max-w-lg flex-col gap-[var(--space-4)]"
       noValidate
       onSubmit={handleSubmit}
     >
-      <p className="type-body text-[length:var(--type-ui)] mb-[var(--space-1)] text-[var(--muted)]">
-        Four fields.
-      </p>
-
       {field("name", "Name", { type: "text", autoComplete: "name" })}
       {field("brand", "Brand", { type: "text", autoComplete: "organization" })}
       {field("website", "Website", { type: "url", autoComplete: "url", placeholder: "https://" })}
       {field("email", "Work email", { type: "email", autoComplete: "email" })}
       
+      {/* Running Meta ads? — Custom UI/UX Segmented Pills */}
       <div>
         <Label htmlFor="runningAds">Running Meta ads?</Label>
-        <div className="relative mt-2">
-          <select
-            id="runningAds"
-            name="runningAds"
-            value={formData.runningAds}
-            onChange={handleChange}
-            className="w-full appearance-none rounded-[var(--radius-control)] border border-[var(--border)] bg-[var(--surface)] px-[var(--space-3)] py-3 text-[length:var(--type-body)] transition-colors focus:border-[var(--ink)] focus:outline-none focus:ring-1 focus:ring-[var(--ink)]"
-          >
-            <option value="" disabled>Select an option…</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[var(--muted)]">
-            <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-            </svg>
-          </div>
+        <div className="mt-2 flex gap-3" role="radiogroup" aria-label="Running Meta ads?">
+          {["Yes", "No"].map((option) => {
+            const isSelected = formData.runningAds === option
+            return (
+              <button
+                key={option}
+                type="button"
+                role="radio"
+                aria-checked={isSelected}
+                onClick={() => {
+                  setFormData((prev) => ({ ...prev, runningAds: option }))
+                  if (errors.runningAds) {
+                    setErrors((prev) => ({ ...prev, runningAds: undefined }))
+                  }
+                }}
+                className={`flex-1 min-h-[44px] rounded-[var(--radius-control)] border px-4 py-2.5 text-[length:var(--type-ui)] font-semibold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-text)] ${
+                  isSelected
+                    ? "border-[var(--dark-accent)] bg-[var(--dark-accent)] text-[#0a0a0a] shadow-md"
+                    : "border-[var(--dark-border-strong)] bg-white/5 text-[var(--dark-ink)] hover:border-[var(--dark-ink)]"
+                }`}
+              >
+                {option}
+              </button>
+            )
+          })}
         </div>
+        {errors.runningAds && (
+          <p className="field-error" id="runningAds-error">
+            {errors.runningAds}
+          </p>
+        )}
+      </div>
+
+      {/* Creative Pain Point Open Question */}
+      <div>
+        <Label htmlFor="jammingCreative">
+          What’s jamming your creative right now?
+        </Label>
+        <Textarea
+          id="jammingCreative"
+          name="jammingCreative"
+          rows={3}
+          placeholder="e.g. Hooks wearing out quickly, takes 3 weeks to film new footage..."
+          value={formData.jammingCreative}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="pt-[var(--space-2)]">
         <Button
           type="submit"
-          variant="outline"
+          variant="primary"
           disabled={isSubmitting}
-          className="self-start disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full justify-center disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
-          {isSubmitting ? "Routing..." : "Request my call"}
+          {isSubmitting ? "Sending..." : "Book the call"}
         </Button>
       </div>
     </form>
   )
 }
+
