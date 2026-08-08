@@ -16,28 +16,28 @@ if (typeof window !== "undefined") {
 
 const offerItems = [
   {
-    title: "Research-led direction",
-    desc: "Research covering your product, customer language, offer, competitors, current ads, available assets, and performance feedback you can provide.",
+    title: "Research first",
+    desc: "Product, customer language, offer, competitors, live ads.",
   },
   {
-    title: "Four materially different concepts",
-    desc: "Four distinct creative directions—not recolored or lightly edited variations of the same idea.",
+    title: "Four concepts",
+    desc: "Four directions. Not one idea recolored.",
   },
   {
-    title: "Three executions per concept",
-    desc: "Each approved concept is developed into three executions, producing twelve total ads.",
+    title: "Twelve ads",
+    desc: "Three executions per approved concept.",
   },
   {
-    title: "Fit-based format mix",
-    desc: "A mix of short-form video, static, and carousel creative selected according to the approved concepts, product, available assets, and intended placements.",
+    title: "Right format",
+    desc: "Video, static, or carousel. Whichever the idea needs.",
   },
   {
-    title: "Creative strategy sheet",
-    desc: "A clear record of the audience insight, hypothesis, format, required proof, and intended learning behind each concept.",
+    title: "Strategy sheet",
+    desc: "The insight, hypothesis, and proof behind each ad.",
   },
   {
-    title: "Two-batch delivery",
-    desc: "Twelve ads delivered in two batches of six, with one consolidated revision round included for each batch.",
+    title: "Two batches",
+    desc: "Six, then six. One revision round each.",
   },
 ]
 
@@ -68,8 +68,6 @@ export function OfferReveal() {
           scrollTrigger: {
             trigger: item,
             start: "top 75%",
-            // Reaches its final clear state well before the item leaves the
-            // readable band, so nothing stays blurred once active.
             end: "top 45%",
             scrub: 1,
           },
@@ -98,7 +96,7 @@ export function OfferReveal() {
 
   return (
     <section
-      id="offer"
+      id="pricing"
       ref={sectionRef}
       className="relative bg-[var(--surface)] py-[var(--space-8)]"
     >
@@ -108,29 +106,15 @@ export function OfferReveal() {
           <div ref={leftRef} className="md:pt-[var(--space-6)]">
             <Eyebrow>12-Ad Creative Sprint</Eyebrow>
             <Heading as="h2" size="lg">
-              Four concepts. Twelve launch-ready ads.
+              $2,500/month.
             </Heading>
             <p className="type-body mt-[var(--space-3)]">
-              For U.S. DTC brands that need more ad creative but do not want the cost and logistics of repeated shoots, Baitti Creative Studio develops four distinct concepts and delivers twelve photorealistic, launch-ready Meta ads.
+              Four concepts. Twelve ads. Month-to-month, paid upfront.
             </p>
-
-            <div className="mt-[var(--space-4)] border-t border-[var(--line)] pt-[var(--space-3)]">
-              <p className="flex items-baseline gap-2">
-                <span className="text-5xl font-bold tracking-tight text-[var(--ink)]">
-                  $2,500
-                </span>
-                <span className="text-[length:var(--type-body)] text-[var(--muted)]">
-                  / month
-                </span>
-              </p>
-              <p className="mt-[var(--space-1)] text-[length:var(--type-eyebrow)] uppercase tracking-[0.14em] text-[var(--muted)]">
-                Month-to-month &bull; Paid upfront
-              </p>
-            </div>
 
             <div className="mt-[var(--space-3)]">
               <Button href={siteConfig.links.booking} variant="primary">
-                Book a 20-minute fit call
+                Book a 20-min fit call
               </Button>
             </div>
           </div>
@@ -140,8 +124,6 @@ export function OfferReveal() {
           <div className="flex flex-col gap-[var(--space-8)]">
             {offerItems.map((item, i) => (
               <div key={item.title} className="relative">
-                {/* Ghost numeral: consistent size, opacity and offset for all
-                    six, and clipped by the wrapper so it cannot overflow. */}
                 <div
                   ref={(el) => {
                     bgNumbersRef.current[i] = el
@@ -170,28 +152,36 @@ export function OfferReveal() {
             ))}
           </div>
 
-          <div className="mt-[var(--space-8)] border-t border-[var(--line)] pt-[var(--space-5)]">
-            <div className="space-y-[var(--space-4)]">
-              <div>
-                <Heading as="h4" size="sm">Included Scope</Heading>
-                <p className="type-body mt-2 text-[var(--muted)]">
-                  The sprint includes research, concept development, hooks, scripts, storyboards, headlines, primary-copy recommendations, production, editing, captions, strategy notes, and the format adaptations required for the approved concepts.
-                </p>
-              </div>
-              <div>
-                <Heading as="h4" size="sm">Scope Boundary</Heading>
-                <p className="type-body mt-2 text-[var(--muted)]">
-                  The service does not include media buying, campaign setup, ad-account management, website production, organic social management, or guaranteed advertising performance.
-                </p>
-              </div>
-              <div>
-                <Heading as="h4" size="sm">External Costs</Heading>
-                <p className="type-body mt-2 text-[var(--muted)]">
-                  Creator fees, product shipping, licensed assets, voice talent, and other approved external production costs are separate when required. No external cost is committed without client approval.
-                </p>
-              </div>
+          {/* Included / Not included / Extra costs */}
+          <div className="mt-[var(--space-8)] border-t border-[var(--line)] pt-[var(--space-6)] space-y-[var(--space-4)]">
+            <div>
+              <p className="type-body text-[var(--ink)] font-semibold">
+                Included:
+              </p>
+              <p className="type-body text-[var(--muted)] mt-1">
+                Research, concepts, hooks, scripts, storyboards, headlines, copy, production, editing, captions, strategy notes.
+              </p>
+            </div>
+
+            <div>
+              <p className="type-body text-[var(--ink)] font-semibold">
+                Not included:
+              </p>
+              <p className="type-body text-[var(--muted)] mt-1">
+                Media buying, campaign setup, websites, organic social, performance guarantees.
+              </p>
+            </div>
+
+            <div>
+              <p className="type-body text-[var(--ink)] font-semibold">
+                Extra costs:
+              </p>
+              <p className="type-body text-[var(--muted)] mt-1">
+                Creator fees, shipping, licensed assets, voice talent. Only with your approval.
+              </p>
             </div>
           </div>
+
         </div>
       </Container>
     </section>

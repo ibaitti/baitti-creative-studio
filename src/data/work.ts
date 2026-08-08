@@ -26,7 +26,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "modern-pet-nutrition",
-    title: "Concept 01 — Pet Nutrition",
+    title: "Pet Nutrition",
     category: "Pet Nutrition",
     image:
       "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=1200",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sustainable-denim",
-    title: "Concept 02 — Sustainable Denim",
+    title: "Sustainable Denim",
     category: "Apparel",
     image:
       "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80&w=1200",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
   },
   {
     slug: "canine-accessories",
-    title: "Concept 03 — Canine Accessories",
+    title: "Canine Accessories",
     category: "Pet Accessories",
     image:
       "https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&q=80&w=1200",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
   },
   {
     slug: "minimalist-outerwear",
-    title: "Concept 04 — Minimalist Outerwear",
+    title: "Minimalist Outerwear",
     category: "Apparel",
     image:
       "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=1200",

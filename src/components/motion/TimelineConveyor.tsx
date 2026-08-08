@@ -57,9 +57,9 @@ export function TimelineConveyor({ items }: { items: TimelineItem[] }) {
   return (
     <section ref={sectionRef} className="bg-[var(--surface)] py-[var(--space-8)] overflow-hidden">
       <Container>
-        <Eyebrow>From readiness to delivery</Eyebrow>
+        <Eyebrow>Signed to shipped</Eyebrow>
         <Heading as="h2" size="lg">
-          Two batches. Clear approval gates.
+          Five gates.
         </Heading>
 
         <div className="relative mt-[var(--space-6)]">
@@ -92,15 +92,15 @@ export function TimelineConveyor({ items }: { items: TimelineItem[] }) {
         <div className="mt-[var(--space-8)] border-t border-[var(--line)] pt-[var(--space-5)]">
           <div className="grid grid-cols-1 gap-[var(--space-5)] md:grid-cols-2">
             <div>
-              <Heading as="h4" size="sm">Feedback and Revisions</Heading>
+              <Heading as="h4" size="sm">Feedback</Heading>
               <p className="type-body mt-2 text-[var(--muted)]">
-                The client provides one consolidated response within 48 hours of each batch. Each batch includes one in-scope consolidated revision round.
+                One consolidated response per batch, within 48 hours. One revision round each.
               </p>
             </div>
             <div>
-              <Heading as="h4" size="sm">Monthly Review</Heading>
+              <Heading as="h4" size="sm">Month end</Heading>
               <p className="type-body mt-2 text-[var(--muted)]">
-                At the end of the service month, we review what was delivered, accepted, and launched, together with available performance signals, revisions, delays, and client feedback. Those inputs inform the next creative cycle without claiming causality from incomplete ad-account data.
+                What shipped, what launched, what to kill next month.
               </p>
             </div>
           </div>

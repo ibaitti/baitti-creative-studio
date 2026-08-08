@@ -12,7 +12,7 @@ import { siteConfig } from "@/config/site"
 const NAV = [
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
-  { href: "/#offer", label: "Offer" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/#fit", label: "Fit" },
   { href: "/#faq", label: "FAQ" },
 ]
@@ -53,10 +53,10 @@ export function Header() {
         <Container className="flex h-[var(--header-h)] items-center justify-between">
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center text-2xl font-bold tracking-tight"
+            className="inline-flex min-h-[44px] items-center text-xl font-bold tracking-tight"
             onClick={closeMenu}
           >
-            Baitti.
+            Baitti Creative Studio
           </Link>
 
           <nav className="hidden md:flex items-center gap-[var(--space-4)]">
@@ -77,7 +77,7 @@ export function Header() {
               variant="primary"
               className="hidden sm:inline-flex"
             >
-              Book a 20-minute fit call
+              Book a call
             </Button>
             <button
               ref={buttonRef}
@@ -126,7 +126,7 @@ export function Header() {
                   className="w-full justify-center"
                   onClick={closeMenu}
                 >
-                  Book a 20-minute fit call
+                  Book a call
                 </Button>
               </div>
             </nav>

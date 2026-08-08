@@ -43,7 +43,7 @@ export function StickyCTA() {
           variant="primary"
           className="flex-1 justify-center"
         >
-          Book a fit call
+          Book a call
         </Button>
         <button
           type="button"

@@ -111,17 +111,17 @@ export function ContactForm() {
       noValidate
       onSubmit={handleSubmit}
     >
-      <p className="type-body text-[length:var(--type-ui)] mb-[var(--space-1)]">
-        Share a few details so we can determine whether a conversation makes sense.
+      <p className="type-body text-[length:var(--type-ui)] mb-[var(--space-1)] text-[var(--muted)]">
+        Four fields.
       </p>
 
       {field("name", "Name", { type: "text", autoComplete: "name" })}
-      {field("brand", "Brand name", { type: "text", autoComplete: "organization" })}
+      {field("brand", "Brand", { type: "text", autoComplete: "organization" })}
       {field("website", "Website", { type: "url", autoComplete: "url", placeholder: "https://" })}
       {field("email", "Work email", { type: "email", autoComplete: "email" })}
       
       <div>
-        <Label htmlFor="runningAds">Are you currently running Meta ads?</Label>
+        <Label htmlFor="runningAds">Running Meta ads?</Label>
         <div className="relative mt-2">
           <select
             id="runningAds"
@@ -130,7 +130,7 @@ export function ContactForm() {
             onChange={handleChange}
             className="w-full appearance-none rounded-[var(--radius-control)] border border-[var(--border)] bg-[var(--surface)] px-[var(--space-3)] py-3 text-[length:var(--type-body)] transition-colors focus:border-[var(--ink)] focus:outline-none focus:ring-1 focus:ring-[var(--ink)]"
           >
-            <option value="" disabled>Select an option...</option>
+            <option value="" disabled>Select an option…</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
@@ -149,7 +149,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           className="self-start disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isSubmitting ? "Routing..." : "Request a 20-minute fit call"}
+          {isSubmitting ? "Routing..." : "Request my call"}
         </Button>
       </div>
     </form>
