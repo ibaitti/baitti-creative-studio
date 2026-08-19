@@ -99,7 +99,7 @@ export function Header() {
               variant="primary"
               className="hidden sm:inline-flex"
             >
-              Book a call
+              Book a fit call
             </Button>
             <button
               ref={buttonRef}
@@ -148,7 +148,7 @@ export function Header() {
                   className="w-full justify-center"
                   onClick={closeMenu}
                 >
-                  Book a call
+                  Book a fit call
                 </Button>
               </div>
             </nav>

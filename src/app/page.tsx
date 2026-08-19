@@ -62,7 +62,7 @@ export default function Home() {
     {
       id: "commitment",
       question: "What is the commitment?",
-      answer: "Month-to-month, paid upfront. Renew when the performance earns it.",
+      answer: "No contract. First month paid upfront. Renew when the performance earns it.",
     },
     {
       id: "start-smaller",
@@ -101,10 +101,10 @@ export default function Home() {
           <div className="max-w-3xl">
             <Eyebrow>The work</Eyebrow>
             <Heading as="h2" size="lg">
-              Four concepts.
+              Ad concepts across pet, apparel, and DTC.
             </Heading>
             <p className="type-body measure mt-[var(--space-3)]">
-              Spec projects. No clients, no results attached.
+              Built to show range, not attached to client results — yet.
             </p>
           </div>
 
@@ -115,14 +115,14 @@ export default function Home() {
                   href={`/work/${project.slug}`}
                   className="group block rounded-[var(--radius-media)]"
                 >
-                  <MediaFrame aspectRatio="square" cursorAction="view">
+                  <MediaFrame aspectRatio="square">
                     <Image
                       src={project.image}
                       alt={project.alt}
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="work-card__img object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
+                      className="work-card__img object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </MediaFrame>
                   <div className="mt-[var(--space-2)]">
@@ -174,7 +174,7 @@ export default function Home() {
           <DarkInversion>
             <Eyebrow className="text-[var(--accent)] font-bold">HONEST FIT</Eyebrow>
             <Heading as="h2" size="lg">
-              Built for Meta performance.
+              Who this is for.
             </Heading>
             
             <div className="mt-[var(--space-6)] grid grid-cols-1 md:grid-cols-2 gap-[var(--space-6)] md:gap-[var(--space-8)]">
@@ -295,7 +295,7 @@ export default function Home() {
               />
               <div className="mt-[var(--space-6)]">
                 <Button href={siteConfig.links.booking} variant="primary">
-                  Book a 20-minute fit call
+                  Book a fit call
                 </Button>
               </div>
             </div>

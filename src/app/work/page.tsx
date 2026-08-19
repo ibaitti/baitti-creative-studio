@@ -44,7 +44,7 @@ export default function WorkIndexPage() {
                 href={`/work/${project.slug}`}
                 className="block rounded-[var(--radius-media)]"
               >
-                <MediaFrame aspectRatio="square" cursorAction="view">
+                <MediaFrame aspectRatio="square">
                   <Image
                     src={project.image}
                     alt={project.alt}

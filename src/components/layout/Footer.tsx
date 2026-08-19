@@ -18,6 +18,16 @@ const LINKS = [
 
 export function Footer() {
   const email = siteConfig.links.contactEmail
+  const [revealed, setRevealed] = React.useState(false)
+
+  const handleRevealOrMail = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (!revealed) {
+      setRevealed(true)
+    } else if (email) {
+      window.location.href = `mailto:${email}`
+    }
+  }
 
   return (
     <footer className="dark-zone border-t border-[var(--line)] py-[var(--space-6)]">
@@ -28,18 +38,27 @@ export function Footer() {
             <p className="text-[length:var(--type-ui)] text-[var(--muted)]">
               &copy; 2026 Baitti Creative Studio
             </p>
-            <p className="text-[length:var(--type-ui)] text-[var(--muted)]">
-              {email ? (
-                <a
-                  href={`mailto:${email}`}
-                  className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ink)]"
-                >
-                  {email}
-                </a>
-              ) : (
-                <span>[Email] &bull; [Postal address]</span>
-              )}
-            </p>
+            <div className="flex items-center gap-3 text-[length:var(--type-ui)] text-[var(--muted)]">
+              <ScrollLink
+                href="/#contact"
+                className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ink)]"
+              >
+                Inquiries form
+              </ScrollLink>
+              <span>&bull;</span>
+              <button
+                type="button"
+                onClick={handleRevealOrMail}
+                className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ink)] cursor-pointer"
+                title={revealed ? "Send email" : "Reveal email address"}
+              >
+                {revealed ? (
+                  <span>{email}</span>
+                ) : (
+                  <span>Email (click to reveal)</span>
+                )}
+              </button>
+            </div>
           </div>
 
           <nav className="flex flex-wrap gap-x-[var(--space-4)] gap-y-[var(--space-1)]">

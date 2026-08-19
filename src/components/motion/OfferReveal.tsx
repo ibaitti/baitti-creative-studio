@@ -109,7 +109,7 @@ export function OfferReveal() {
               $2,500/month.
             </Heading>
             <p className="type-body mt-[var(--space-3)] font-medium">
-              4 concepts. 12 launch-ready ads. Month to month, paid upfront.
+              4 concepts. 12 launch-ready ads. No contract. First month paid upfront.
             </p>
             <p className="type-body text-xs text-[var(--muted)] mt-2">
               Compare to traditional shoot production ($8,000 to $15,000/mo).
@@ -122,7 +122,7 @@ export function OfferReveal() {
 
             <div className="mt-[var(--space-4)]">
               <Button href={siteConfig.links.booking} variant="primary">
-                Book a 20-min fit call
+                Book a fit call
               </Button>
             </div>
           </div>
