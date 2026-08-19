@@ -1,77 +1,93 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Container } from "@/components/ui/Container"
 import { Heading } from "@/components/ui/Heading"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
-import { MediaFrame } from "@/components/ui/MediaFrame"
 import { Accordion } from "@/components/ui/Accordion"
 import { ContactForm } from "@/components/forms/ContactForm"
+import { MediaFrame } from "@/components/ui/MediaFrame"
 import { siteConfig } from "@/config/site"
-import { motionVideos, rangeBlockData, beforeAfterData } from "@/data/work"
+import { projects } from "@/data/work"
 
 import { HeroZoom } from "@/components/motion/HeroZoom"
 import { DarkInversion } from "@/components/motion/DarkInversion"
 import { OfferReveal } from "@/components/motion/OfferReveal"
 
+
 export default function Home() {
 
-  const fitBullets = [
-    "U.S. DTC brand already running Meta ads",
-    "A visual product where scenes and styling sell it",
-    "Your ads repeat, or take too long to make",
-    "$2,500/mo is fundable and one person can approve",
+  const bestFit = [
+    "Running Meta ads right now ($10k+/mo spend).",
+    "Visually demonstrable e-commerce product.",
+    "Creative fatigue or slow production limiting your scale.",
+    "Can commit $2,500/mo for high-volume creative.",
+    "1 decision-maker who approves concepts within 48 hours.",
+  ]
+
+  const differentFit = [
+    "You need media buying or ad account management.",
+    "You need website development or landing pages.",
+    "Pre-launch brands with 0 proven ad data.",
+    "Want fake testimonials or unapproved claims.",
+    "Looking for single 1-ad packages.",
   ]
 
   const faqItems = [
     {
+      id: "guarantee",
+      question: "What is the Winning Ad Guarantee?",
+      answer: "If 1 ad in your first batch doesn't beat your account's best CTR or 3-second hook rate baseline, you get 100% of your money back for that batch and keep all 12 ads. Zero risk.",
+    },
+    {
       id: "run-ads",
-      question: "Do you run the ads?",
-      answer: "No. We make them. You buy the media.",
+      question: "Do you manage media buying?",
+      answer: "No. We build the high-production creative. You run the ad account.",
     },
     {
       id: "dont-like",
-      question: "What if we hate the concepts?",
-      answer: "You approve before production. One revision round per batch.",
+      question: "What happens if a concept misses the mark?",
+      answer: "You approve all 4 concepts before full production begins. You also get 1 consolidated revision round per batch.",
     },
     {
       id: "why-twelve",
-      question: "Why twelve?",
-      answer: "One ad teaches you nothing. Four ideas, three ways each, gives you something to compare.",
+      question: "Why 12 ads?",
+      answer: "12 ads is the smallest batch to get clear ad account learnings. 4 distinct concepts, 3 executions each gives you real data to compare.",
     },
     {
       id: "how-different",
-      question: "Why not a freelance editor?",
-      answer: "Editors edit what you shot. We build the shoot.",
+      question: "How is this different from hiring an editor?",
+      answer: "Editors edit footage you shot. We build the entire shoot for you from scratch. We handle research, concepts, visual scenes, and final edits.",
     },
     {
       id: "commitment",
-      question: "What's the commitment?",
-      answer: "Month to month. Renew when the work earns it.",
+      question: "What is the commitment?",
+      answer: "Month-to-month, paid upfront. Renew when the performance earns it.",
     },
     {
       id: "start-smaller",
-      question: "Can we start smaller?",
-      answer: "No. Twelve is the smallest batch you can read.",
+      question: "Can we start smaller than 12 ads?",
+      answer: "No. 12 ads is the minimum batch needed to get reliable performance data on Meta.",
     },
     {
       id: "external-costs",
-      question: "Are extra costs included?",
-      answer: "No. Creator fees, shipping, licensed assets, voice talent are separate and pre-approved.",
+      question: "Which costs are billed separately?",
+      answer: "Creator fees, product shipping, licensed assets, and voice talent. These are always pre-approved by you before any spending.",
     },
     {
       id: "what-needed",
-      question: "What do you need?",
-      answer: "Files, brand guidance, approved claims, rights, and one decision-maker who replies in 48 hours.",
+      question: "What assets do you need from us?",
+      answer: "Your product files, brand guidelines, approved claims, and 1 decision-maker who replies within 48 hours.",
     },
     {
       id: "use-ai",
       question: "How do you use AI?",
-      answer: "To build scenes and product visuals. Everything shown must be true, authorized, and match your evidence.",
+      answer: "We use AI to build photorealistic locations, backgrounds, and styling. Everything shown is truthful and matches your product facts.",
     },
     {
-      id: "guarantee",
-      question: "Do you guarantee results?",
-      answer: "No. We guarantee scope and delivery. The account is yours.",
+      id: "protect-claims",
+      question: "How do you protect brand claims?",
+      answer: "All claims and concepts pass through your direct approval before final delivery.",
     },
   ]
 
@@ -79,210 +95,72 @@ export default function Home() {
     <main className="flex-1">
       <HeroZoom />
 
-      {/* ============================================================
-          REBUILT "THE WORK" SECTION (#work)
-          3 Stacked Content Blocks: Motion Row, Range Block, Before/After
-          ============================================================ */}
+      {/* Concept work */}
       <section id="work" className="py-[var(--space-8)]">
         <Container>
           <div className="max-w-3xl">
             <Eyebrow>The work</Eyebrow>
             <Heading as="h2" size="lg">
-              Concept executions.
+              Four concepts.
             </Heading>
             <p className="type-body measure mt-[var(--space-3)]">
-              Spec work. No clients or campaign results attached.
+              Spec projects. No clients, no results attached.
             </p>
           </div>
 
-          <div className="mt-[var(--space-8)] space-y-[var(--space-8)]">
-            {/* Block A — Motion Row */}
-            <div className="border-t border-[var(--line)] pt-[var(--space-6)]">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-[var(--space-5)]">
-                <div>
-                  <span className="text-[length:var(--type-eyebrow)] uppercase tracking-widest font-semibold text-[var(--muted)]">
-                    Block A — Motion Row
-                  </span>
-                  <Heading as="h3" size="md" className="mt-1">
-                    Ad creative frames
-                  </Heading>
-                </div>
-                <p className="text-[length:var(--type-ui)] text-[var(--muted)] max-w-md">
-                  Vertical 9:16 and feed 4:5 formats built specifically for Meta performance campaigns.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-[var(--space-5)] sm:grid-cols-2 lg:grid-cols-3 items-start">
-                {motionVideos.map((video) => (
-                  <div key={video.id} className="group relative flex flex-col work-card">
-                    <div className="overflow-hidden rounded-[var(--radius-media)]">
-                      <div className={`relative w-full overflow-hidden ${video.aspectRatio === "9:16" ? "aspect-[9/16]" : "aspect-[4/5]"}`}>
-                        {/* TODO: Replace video src with the corresponding real MP4 when available (e.g., /videos/ad-creative-1.mp4) */}
-                        <video
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          preload="metadata"
-                          poster={video.poster}
-                          className="work-card__img h-full w-full object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
-                        >
-                          <source src={video.videoSrc} type="video/mp4" />
-                        </video>
-                      </div>
-                    </div>
-
-                    <div className="mt-3">
-                      <h4 className="text-[length:var(--type-ui)] font-semibold text-[var(--ink)]">
-                        {video.title}
-                      </h4>
-                      <p className="text-[length:var(--type-eyebrow)] uppercase tracking-wider text-[var(--muted)] mt-0.5">
-                        {video.tag}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Block B — Range Block */}
-            <div className="border-t border-[var(--line)] pt-[var(--space-6)]">
-              <div className="max-w-3xl mb-[var(--space-6)]">
-                <span className="text-[length:var(--type-eyebrow)] uppercase tracking-widest font-semibold text-[var(--muted)]">
-                  Block B — Range Block
-                </span>
-                <Heading as="h3" size="md" className="mt-1 text-[length:var(--type-section)]">
-                  {rangeBlockData.title}
-                </Heading>
-                <p className="type-body measure mt-[var(--space-2)]">
-                  {rangeBlockData.description}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-[var(--space-6)] md:grid-cols-2">
-                {rangeBlockData.scenes.map((scene) => (
-                  <div key={scene.id} className="group flex flex-col work-card">
-                    <MediaFrame aspectRatio="portrait" className="w-full" cursorAction="view">
-                      <Image
-                        src={scene.image}
-                        alt={scene.alt}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="work-card__img object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
-                      />
-                    </MediaFrame>
-                    <div className="mt-4 space-y-1">
-                      <Heading as="h4" size="sm" className="text-[length:var(--type-item)]">
-                        {scene.title}
-                      </Heading>
-                      <p className="text-[length:var(--type-ui)] text-[var(--muted)]">
-                        <strong className="font-semibold text-[var(--ink)]">Lighting:</strong> {scene.lighting}
-                      </p>
-                      <p className="text-[length:var(--type-ui)] text-[var(--muted)]">
-                        <strong className="font-semibold text-[var(--ink)]">Styling:</strong> {scene.styling}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Block C — Before/After Pair */}
-            <div className="border-t border-[var(--line)] pt-[var(--space-6)]">
-              <div className="max-w-3xl mb-[var(--space-6)]">
-                <span className="text-[length:var(--type-eyebrow)] uppercase tracking-widest font-semibold text-[var(--muted)]">
-                  Block C — Before & After
-                </span>
-                <Heading as="h3" size="md" className="mt-1">
-                  The visual transformation
-                </Heading>
-                <p className="type-body measure mt-[var(--space-2)]">
-                  Comparing raw studio product capture against full AI environmental scene generation.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-[var(--space-6)] md:grid-cols-2">
-                {/* Before */}
-                <div className="group flex flex-col work-card">
-                  <div className="relative">
-                    <div className="absolute top-4 left-4 z-10 rounded bg-[var(--surface)] px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--ink)] shadow-sm">
-                      {beforeAfterData.before.label}
-                    </div>
-                    <MediaFrame aspectRatio="video" className="w-full overflow-hidden rounded-[var(--radius-media)]">
-                      <Image
-                        src={beforeAfterData.before.image}
-                        alt={beforeAfterData.before.alt}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="work-card__img object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
-                      />
-                    </MediaFrame>
-                  </div>
-                  <div className="mt-4">
-                    <Heading as="h4" size="sm">
-                      {beforeAfterData.before.subtitle}
+          <ul className="mt-[var(--space-7)] grid list-none grid-cols-1 gap-[var(--space-6)] p-0 md:grid-cols-2">
+            {projects.map((project) => (
+              <li key={project.slug} className="work-card">
+                <Link
+                  href={`/work/${project.slug}`}
+                  className="group block rounded-[var(--radius-media)]"
+                >
+                  <MediaFrame aspectRatio="square" cursorAction="view">
+                    <Image
+                      src={project.image}
+                      alt={project.alt}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="work-card__img object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
+                    />
+                  </MediaFrame>
+                  <div className="mt-[var(--space-2)]">
+                    <Heading as="h3" size="sm">
+                      {project.title}
                     </Heading>
-                    <p className="type-body mt-1 text-[length:var(--type-ui)] text-[var(--muted)]">
-                      {beforeAfterData.before.description}
+                    <p className="timeline-stage mt-[var(--space-1)]">
+                      {project.category} &bull; Spec project
                     </p>
+                    <span className="work-card__reveal mt-[var(--space-1)] inline-block text-[length:var(--type-ui)] font-semibold text-[var(--accent-text)]">
+                      View concept
+                    </span>
                   </div>
-                </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
 
-                {/* After */}
-                <div className="group flex flex-col work-card">
-                  <div className="relative">
-                    <div className="absolute top-4 left-4 z-10 rounded bg-[var(--accent)] px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
-                      {beforeAfterData.after.label}
-                    </div>
-                    <MediaFrame aspectRatio="video" className="w-full overflow-hidden rounded-[var(--radius-media)]">
-                      <Image
-                        src={beforeAfterData.after.image}
-                        alt={beforeAfterData.after.alt}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="work-card__img object-cover blur-[4px] transition-[filter] duration-500 group-hover:blur-0 group-focus-within:blur-0"
-                      />
-                    </MediaFrame>
-                  </div>
-                  <div className="mt-4">
-                    <Heading as="h4" size="sm" className="text-[var(--accent-text)]">
-                      {beforeAfterData.after.subtitle}
-                    </Heading>
-                    <p className="type-body mt-1 text-[length:var(--type-ui)] text-[var(--muted)]">
-                      {beforeAfterData.after.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
+      {/* About */}
+      <section id="about" className="py-[var(--space-8)]">
+        <Container>
+          <div className="max-w-3xl">
+            <Eyebrow className="text-[var(--accent)] font-bold">HOW IT WORKS</Eyebrow>
+            <Heading as="h2" size="lg">
+              Built, not shot.
+            </Heading>
+            <div className="mt-[var(--space-5)] space-y-[var(--space-4)]">
+              <p className="type-body measure">
+                We handle the entire creative pipeline from research to final render. You get 4 distinct creative directions and 12 launch-ready ads for your Meta ad manager without organizing a crew or lifting a finger.
+              </p>
             </div>
           </div>
         </Container>
       </section>
 
       <OfferReveal />
-
-      {/* About */}
-      <section id="about" className="py-[var(--space-8)]">
-        <Container>
-          <div className="max-w-3xl">
-            <Eyebrow>Who we are</Eyebrow>
-            <Heading as="h2" size="lg">
-              Built, not shot.
-            </Heading>
-            <div className="mt-[var(--space-5)] space-y-[var(--space-4)]">
-              <p className="type-body measure">
-                A shoot buys you one day and one location. We build the scenes instead, so the fifth idea costs what the first did.
-              </p>
-              <p className="type-body measure">
-                We run research to delivery. You keep claims, approvals, launch, and media buying.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
 
       {/* ============================================================
           One continuous dark decision zone. It runs from here through
@@ -294,29 +172,49 @@ export default function Home() {
             ============================================================ */}
         <div id="fit">
           <DarkInversion>
-            <Eyebrow>Honest fit</Eyebrow>
+            <Eyebrow className="text-[var(--accent)] font-bold">HONEST FIT</Eyebrow>
             <Heading as="h2" size="lg">
-              Is this you?
+              Built for Meta performance.
             </Heading>
             
-            <div className="mt-[var(--space-6)] max-w-3xl">
-              <ul className="list-none space-y-[var(--space-3)] p-0">
-                {fitBullets.map((line, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-4 border-t border-[var(--line)] pt-[var(--space-3)] text-[length:var(--type-body)] text-[var(--muted)]"
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--dark-accent)]/15 text-sm font-bold text-[var(--dark-accent)]">
-                      ✓
-                    </span>
-                    <span className="font-medium text-[var(--dark-ink)]">{line}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-[var(--space-6)] border-t border-[var(--line)] pt-[var(--space-4)] text-[length:var(--type-body)] text-[var(--muted)] leading-relaxed">
-                Not a fit if you need media buying, a website, or guaranteed performance, or if the product claims can't be shown honestly.
-              </p>
+            <div className="mt-[var(--space-6)] grid grid-cols-1 md:grid-cols-2 gap-[var(--space-6)] md:gap-[var(--space-8)]">
+              <div>
+                <Heading as="h3" size="sm" className="mb-[var(--space-4)] text-[var(--dark-ink)] uppercase tracking-wider text-xs font-bold">
+                  Best Fit
+                </Heading>
+                <ul className="list-none space-y-[var(--space-3)] p-0">
+                  {bestFit.map((line, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-4 border-t border-[var(--dark-line)] pt-[var(--space-3)] text-[length:var(--type-body)] text-[var(--muted)]"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--dark-accent)]/15 text-sm font-bold text-[var(--dark-accent)]">
+                        ✓
+                      </span>
+                      <span className="font-medium text-[var(--dark-ink)]">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <Heading as="h3" size="sm" className="mb-[var(--space-4)] text-[var(--dark-ink)] uppercase tracking-wider text-xs font-bold opacity-60">
+                  Different Fit
+                </Heading>
+                <ul className="list-none space-y-[var(--space-3)] p-0">
+                  {differentFit.map((line, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-4 border-t border-[var(--dark-line)] pt-[var(--space-3)] text-[length:var(--type-body)] text-[var(--muted)] opacity-60"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--dark-ink)]/10 text-sm font-bold text-[var(--dark-ink)]">
+                        ×
+                      </span>
+                      <span className="font-medium text-[var(--dark-ink)]">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </DarkInversion>
         </div>
@@ -327,47 +225,57 @@ export default function Home() {
         <section id="contact" className="py-[var(--space-8)]">
           <Container>
             <div className="mb-[var(--space-6)] max-w-3xl">
-              <Eyebrow>Next step</Eyebrow>
+              <Eyebrow className="text-[var(--accent)] font-bold">Next step</Eyebrow>
               <Heading as="h2" size="lg">
-                Book a call
+                Book a 20-minute fit call
               </Heading>
               <p className="type-body measure mt-[var(--space-3)] text-[length:var(--type-body)] font-medium leading-relaxed text-[var(--dark-ink)]">
-                Twenty minutes. We find what's jamming your creative and say whether we fix it. If not, we end early. Mutual fit call, not a free audit.
+                20 minutes. We diagnose your creative pipeline and tell you if we can fix it. If not, we end early. Mutual fit call, not a sales pitch.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-[var(--space-7)] lg:grid-cols-12">
-              {/* Direct Cal.com Link Option */}
-              <div className="flex flex-col justify-between rounded-[var(--radius-media)] border border-[var(--dark-line)] bg-white/5 p-[var(--space-5)] lg:col-span-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--space-8)] lg:gap-16 pt-[var(--space-4)]">
+              {/* Direct Cal.com Link Option (Primary) */}
+              <div className="flex flex-col gap-6">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-[var(--dark-accent)]/30 bg-[var(--dark-accent)]/10 px-3 py-1 text-[length:var(--type-eyebrow)] font-semibold uppercase tracking-wider text-[var(--dark-accent)]">
-                    Direct Scheduling
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[var(--dark-line)] bg-transparent px-3 py-1 text-[length:var(--type-eyebrow)] tracking-wider text-[var(--accent)] font-bold mb-5">
+                    Direct Calendar
                   </div>
-                  <Heading as="h3" size="sm" className="mt-4 text-[var(--dark-ink)]">
-                    Prefer to pick a time directly?
+                  <Heading as="h3" size="sm" className="text-[var(--dark-ink)]">
+                    Pick a time right now.
                   </Heading>
-                  <p className="type-body mt-3 text-[length:var(--type-ui)] text-[var(--dark-muted)] leading-relaxed">
-                    Skip the form and choose an open 20-minute slot directly on our calendar.
+                  <p className="type-body mt-4 text-[length:var(--type-body)] text-[var(--dark-muted)] leading-relaxed max-w-md">
+                    Choose an open 20-minute slot directly from our calendar.
                   </p>
                 </div>
-                <div className="mt-8 pt-4 border-t border-[var(--dark-line)]">
+                
+                <div>
                   <Button
-                    href={siteConfig.links.booking.startsWith("http") ? siteConfig.links.booking : "https://cal.com"}
+                    href={siteConfig.links.booking}
                     variant="primary"
-                    className="w-full justify-center text-center"
+                    className="w-full sm:w-auto justify-center text-center px-8"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Book on Cal.com
+                    Choose a time
                   </Button>
                 </div>
               </div>
 
-              {/* Intake Form Questions Option */}
-              <div className="border-t border-[var(--dark-line)] pt-[var(--space-6)] lg:col-span-7 lg:border-l lg:border-t-0 lg:pl-[var(--space-7)] lg:pt-0">
-                <Heading as="h3" size="sm" className="mb-4 text-[var(--dark-ink)]">
-                  Or request times via form
-                </Heading>
+              {/* Intake Form Option */}
+              <div className="flex flex-col gap-6 lg:pl-16 lg:border-l lg:border-[var(--dark-line)]">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[var(--dark-line)] bg-transparent px-3 py-1 text-[length:var(--type-eyebrow)] tracking-wider text-[var(--accent)] font-bold mb-5">
+                    Form Request
+                  </div>
+                  <Heading as="h3" size="sm" className="text-[var(--dark-ink)]">
+                    Can't find a suitable time?
+                  </Heading>
+                  <p className="type-body mt-4 text-[length:var(--type-body)] text-[var(--dark-muted)] max-w-md">
+                    Request a slot and we will reply within 1 business day.
+                  </p>
+                </div>
+                
                 <ContactForm />
               </div>
             </div>
@@ -379,15 +287,15 @@ export default function Home() {
           <Container>
             <div className="max-w-3xl">
               <Heading as="h2" size="lg">
-                Questions.
+                Common questions.
               </Heading>
               <Accordion
                 items={faqItems}
                 className="mt-[var(--space-5)]"
               />
               <div className="mt-[var(--space-6)]">
-                <Button href={siteConfig.links.booking.startsWith("http") ? siteConfig.links.booking : "https://cal.com"} variant="primary">
-                  Book a 20-min fit call
+                <Button href={siteConfig.links.booking} variant="primary">
+                  Book a 20-minute fit call
                 </Button>
               </div>
             </div>

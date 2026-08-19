@@ -11,7 +11,6 @@ import { siteConfig } from "@/config/site"
 
 const NAV = [
   { href: "/#work", label: "Work" },
-  { href: "/#process", label: "Process" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/#fit", label: "Fit" },
   { href: "/#faq", label: "FAQ" },
@@ -19,8 +18,31 @@ const NAV = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const prevScrollY = useRef(0)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const lenis = useLenis()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (isOpen) {
+        setIsVisible(true)
+        return
+      }
+      if (currentScrollY < 20) {
+        setIsVisible(true)
+      } else if (currentScrollY > prevScrollY.current && currentScrollY > 80) {
+        setIsVisible(false)
+      } else if (currentScrollY < prevScrollY.current) {
+        setIsVisible(true)
+      }
+      prevScrollY.current = currentScrollY
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isOpen])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,7 +71,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 h-[var(--header-h)] bg-[var(--canvas)]/85 backdrop-blur-md border-b border-[var(--line)]">
+      <header className={`fixed top-0 left-0 right-0 z-50 h-[var(--header-h)] bg-[var(--canvas)]/85 backdrop-blur-md border-b border-[var(--line)] transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
         <Container className="flex h-[var(--header-h)] items-center justify-between">
           <Link
             href="/"

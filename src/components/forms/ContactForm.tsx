@@ -7,14 +7,13 @@ import { Label } from "@/components/ui/Label"
 import { Textarea } from "@/components/ui/Textarea"
 import { Button } from "@/components/ui/Button"
 
-type FieldName = "name" | "brand" | "website" | "email" | "runningAds" | "jammingCreative"
+type FieldName = "name" | "website" | "email" | "runningAds" | "jammingCreative"
 
-const REQUIRED: FieldName[] = ["name", "brand", "email"]
+const REQUIRED: FieldName[] = ["name", "email", "runningAds"]
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
-    brand: "",
     website: "",
     email: "",
     runningAds: "",
@@ -27,12 +26,12 @@ export function ContactForm() {
   const validate = () => {
     const next: Partial<Record<FieldName, string>> = {}
     if (!formData.name.trim()) next.name = "Enter your name."
-    if (!formData.brand.trim()) next.brand = "Enter your brand name."
     if (!formData.email.trim()) {
       next.email = "Enter your work email."
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       next.email = "Enter a valid email address."
     }
+    if (!formData.runningAds) next.runningAds = "Select an option."
     return next
   }
 
@@ -106,9 +105,9 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <div className="rounded-[var(--radius-media)] border border-[var(--dark-line)] bg-white/5 p-[var(--space-5)] text-left shadow-xl backdrop-blur-md">
+      <div className="flex flex-col gap-4 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--dark-accent)]/20 text-[var(--dark-accent)]">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">
             <svg className="h-5 w-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -117,7 +116,7 @@ export function ContactForm() {
             Request Received
           </span>
         </div>
-        <p className="type-body mt-4 text-[var(--dark-ink)] font-medium leading-relaxed">
+        <p className="type-body text-[var(--dark-muted)] leading-relaxed">
           A reply with two time slots arrives within one business day.
         </p>
       </div>
@@ -131,13 +130,17 @@ export function ContactForm() {
       onSubmit={handleSubmit}
     >
       {field("name", "Name", { type: "text", autoComplete: "name" })}
-      {field("brand", "Brand", { type: "text", autoComplete: "organization" })}
       {field("website", "Website", { type: "url", autoComplete: "url", placeholder: "https://" })}
       {field("email", "Work email", { type: "email", autoComplete: "email" })}
       
       {/* Running Meta ads? — Custom UI/UX Segmented Pills */}
       <div>
-        <Label htmlFor="runningAds">Running Meta ads?</Label>
+        <Label htmlFor="runningAds">
+          Running Meta ads?
+          <span className="field-required" aria-hidden="true">
+            {" *"}
+          </span>
+        </Label>
         <div className="mt-2 flex gap-3" role="radiogroup" aria-label="Running Meta ads?">
           {["Yes", "No"].map((option) => {
             const isSelected = formData.runningAds === option
@@ -155,8 +158,8 @@ export function ContactForm() {
                 }}
                 className={`flex-1 min-h-[44px] rounded-[var(--radius-control)] border px-4 py-2.5 text-[length:var(--type-ui)] font-semibold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-text)] ${
                   isSelected
-                    ? "border-[var(--dark-accent)] bg-[var(--dark-accent)] text-[#0a0a0a] shadow-md"
-                    : "border-[var(--dark-border-strong)] bg-white/5 text-[var(--dark-ink)] hover:border-[var(--dark-ink)]"
+                    ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--accent-ink)] shadow-md"
+                    : "border-[var(--dark-line)] bg-transparent text-[var(--dark-ink)] hover:border-[var(--dark-muted)]"
                 }`}
               >
                 {option}
@@ -191,9 +194,9 @@ export function ContactForm() {
           type="submit"
           variant="primary"
           disabled={isSubmitting}
-          className="w-full justify-center disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="w-full justify-center sm:w-auto"
         >
-          {isSubmitting ? "Sending..." : "Book the call"}
+          {isSubmitting ? "Sending..." : "Request a time"}
         </Button>
       </div>
     </form>

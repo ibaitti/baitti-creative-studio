@@ -42,8 +42,8 @@
   --container: 80rem; /* 1280px */
   --gutter: 24px;
   --header-h: 5rem;
-  --radius-control: 0.5rem;
-  --radius-media: 0.75rem;
+  --radius-control: 1.25rem;
+  --radius-media: 1.75rem;
   --section-space: var(--space-8);
 
   /* ---- Type scale ---- */
@@ -68,12 +68,35 @@
 }
 
 /* ============================================================
-   2. BASE
+   2. BASE & CUSTOM UI
    ============================================================ */
 body {
   background-color: var(--canvas);
   color: var(--ink);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 /* Fixed header must never cover the heading we scrolled to. */
@@ -84,7 +107,8 @@ section[id],
 
 :focus-visible {
   outline: 2px solid var(--accent-text);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
 /* ============================================================
@@ -163,8 +187,7 @@ section[id],
 
 /* ============================================================
    6. WORK CARDS
-   Grayscale is a hover affordance only. On touch and keyboard
-   the card loads in full colour with its CTA already visible.
+   Hover affordance for scale.
    ============================================================ */
 .work-card__img {
   transition: none;
@@ -172,15 +195,11 @@ section[id],
 
 @media (hover: hover) and (pointer: fine) {
   .work-card__img {
-    filter: grayscale(100%);
-    transition:
-      filter 0.6s ease,
-      transform 0.6s ease;
+    transition: transform 0.6s ease;
   }
 
   .work-card:hover .work-card__img,
   .work-card:focus-within .work-card__img {
-    filter: grayscale(0%);
     transform: scale(1.03);
   }
 
@@ -192,19 +211,6 @@ section[id],
   .work-card:hover .work-card__reveal,
   .work-card:focus-within .work-card__reveal {
     opacity: 1;
-  }
-}
-
-/* Custom cursor label: only where a real cursor exists. */
-@media (hover: hover) and (pointer: fine) {
-  .media-cursor {
-    cursor: none;
-  }
-}
-
-@media (hover: none), (pointer: coarse) {
-  .media-cursor-label {
-    display: none;
   }
 }
 
